@@ -28,23 +28,6 @@ window.onload = function () {
 		xhr.send();
 	}
 
-	function sound(src) {
-		this.sound = document.createElement("audio");
-		this.sound.src = src;
-		this.sound.setAttribute("preload", "auto");
-		this.sound.setAttribute("controls", "none");
-		this.sound.style.display = "none";
-		document.body.appendChild(this.sound);
-		this.play = function () {
-			this.sound.play();
-		};
-		this.stop = function () {
-			this.sound.pause();
-		};
-	}
-
-	var background = sound('./assets/the-avengers.mp3');
-
 	var originData = null;
 	var originLength = null;
 	var data = null;
