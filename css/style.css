@@ -1,60 +1,163 @@
 /* ---- reset ---- */
 
 body {
-    margin: 0;
-    font:normal 75% Arial, Helvetica, sans-serif;
+	margin: 0;
+	font-family: "Booster Next FY", "Avenir Next", Avenir, sans-serif;
 }
 
 canvas {
-    display: block;
-    vertical-align: bottom;
+	display: block;
+	vertical-align: bottom;
 }
 
 /* ---- particles.js container ---- */
 
 #particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #0c1b33;
-    background-image: url("");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #0c1b33;
+	background-image: url("");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50% 50%;
 }
 
 /* ---- stats.js ---- */
 
-.count-particles{
-    background: #000022;
-    position: absolute;
-    top: 48px;
-    left: 0;
-    width: 80px;
-    color: #13E8E9;
-    font-size: .8em;
-    text-align: left;
-    text-indent: 4px;
-    line-height: 14px;
-    padding-bottom: 2px;
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: bold;
+.count-particles {
+	background: #000022;
+	position: absolute;
+	top: 48px;
+	left: 0;
+	width: 80px;
+	color: #13E8E9;
+	font-size: .8em;
+	text-align: left;
+	text-indent: 4px;
+	line-height: 14px;
+	padding-bottom: 2px;
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: bold;
 }
 
-.js-count-particles{
-    font-size: 1.1em;
+.js-count-particles {
+	font-size: 1.1em;
 }
 
 #stats,
-.count-particles{
-    -webkit-user-select: none;
+.count-particles {
+	-webkit-user-select: none;
 }
 
-#stats{
-    border-radius: 3px 3px 0 0;
-    overflow: hidden;
+#stats {
+	border-radius: 3px 3px 0 0;
+	overflow: hidden;
 }
 
-.count-particles{
-    border-radius: 0 0 3px 3px;
+.count-particles {
+	border-radius: 0 0 3px 3px;
 }
+
+#game-start {
+	position: absolute;
+	background-color: black;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+}
+
+#game-start img {
+	width: 50%;
+}
+
+#game-start h3 {
+	color: white;
+	font-size: 4em;
+	margin: 30px;
+	height : 45%;
+}
+
+#game-start .btn {
+	color: #FF006A;
+	border-color: #FF006A;
+	display: inline-block;
+	margin: 6px;
+	font-size: inherit;
+	line-height: 1.42;
+	padding: 0.7em 1.4em;
+	font-weight: normal;
+	border-width: 3px;
+	border-style: solid;
+	background: transparent;
+	border-radius: 0;
+	cursor: pointer;
+	font-family: "Booster Next FY", "Avenir Next", Avenir, sans-serif;
+	user-select: none;
+	vertical-align: bottom;
+	position: relative;
+	transform: translate(0.5em -0.4em);
+	transition: transform 0.2s;
+	font-size: 1.5em;
+}
+
+#game-start .btn:before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	transform: translate(0.6em, -0.3em);
+	transition: transform 0.2s, background-color 0.2s;
+	background-color: rgba(255, 149, 0, 0.4);
+}
+
+
+#game-start .btn:hover {
+    transform: translate(0.2em, -0.1em);
+}
+
+#game-start .btn:hover:before {
+      transform: translate(-0.4em, 0.4em); 
+  }
+
+#game-start .btn:active {
+    transform: translate(0, 0);
+    transition-duration: 0.1s;
+     }
+ 
+#game-start .btn:active:before {
+      transition-duration: 0.1s;
+      transform: translate(0, 0);
+
+      background-color: rgba(255, 149, 0, 0.5); 
+  }
+
+
+#countdown  {
+color: white;
+font-size: 1em;
+  width: 100px;
+  height: 100px;
+  -webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
+  transition: width 2s, height 2s, transform 2s;
+  animation: countdown 1.5s steps(50, end);
+}
+
+#countdown div{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 18px; /* <-- adjust this */
+}
+
+@keyframes countdown {
+  to {
+ 	 -webkit-transform: rotate(360deg); /* Safari */
+ 	 transform: rotate(360deg);
+  }
+}
+

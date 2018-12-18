@@ -3,12 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Thanos GAME</title>
-    <link rel="stylesheet" media="screen" href="css/style.css">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+    <link rel="stylesheet" media="screen" href="./css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/typed.js"></script>
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>-->
 </head>
 <body>
-<div id="particles-js"></div>
-<script type="text/javascript" src="scripts/particles.js"></script>
+<div id="game-start">
+
+	<img src="./assets/thanos.gif"  />
+	<h3 class="game-title"></h3>
+	<button class="btn" id="game-start-btn">Game Start</button>
+
+</div>
+<div id="particles-js">
+	<button class="btn" id="game-count-down">Count Down</button>
+	<div id="countdown"><div>3</div></div>
+</div>
+
+<script type="text/javascript" src="./scripts/particles.js"></script>
 <script type="text/javascript" src="./index.js"></script>
 </body>
 </html>

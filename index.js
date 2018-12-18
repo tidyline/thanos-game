@@ -203,9 +203,11 @@ window.onload = function () {
 	}
 
 
-	var gameStep = ['start', 'particle', 'countdown', 'thanos', 'particle', "countdown"];
+	var gameStep = ["start", 'particle', 'countdown', 'thanos', 'particle', "countdown"].values();
 
-	(function game(step) {
+	var typed = null;
+
+	const game = function (step) {
 		var item = step.next();
 
 		if (item.done) {
@@ -213,15 +215,33 @@ window.onload = function () {
 		} else {
 			switch (item.value) {
 				case "start":
+					var options = {
+						strings: ["THE<br/>THANOS<br/>GAME"],
+						typeSpeed: 100,
+						showCursor : false,
+					};
+
+					typed = new Typed(".game-title", options);
+					break;
 				case "particle":
+					document.getElementById("game-start").style.display='none';
+					document.getElementById("particles-js").style.display = 'block';
+					loadParticles();
+					break;
 				case "countdown":
-				default:
-					game(step);
+					break;
 			}
 
 		}
 
-	})(gameStep.values());
+	};
+
+	game(gameStep);
+
+	document.getElementById('game-start-btn').onclick = function () {
+		game(gameStep);
+
+	};
 
 
 };
