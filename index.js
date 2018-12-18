@@ -1,210 +1,85 @@
 window.onload = function () {
 
-	function getRandomInt(max) {
-		return Math.floor(Math.random() * Math.floor(max));
-	}
-
-	function removeRandomly(data, size) {
-		if (data.length < size) {
-			return "[Error] Size should be smaller than data length";
+	function shuffle(a) {
+		var j, x, i;
+		for (i = a.length - 1; i > 0; i--) {
+			j = Math.floor(Math.random() * (i + 1));
+			x = a[i];
+			a[i] = a[j];
+			a[j] = x;
 		}
-
-		if (data.length === size) {
-			return data;
-		} else {
-			const idx = getRandomInt(data.length);
-			return removeRandomly([...data.slice(0, idx - 1), ...data.slice(idx)], size);
-		}
+		return a;
 	}
 
-	function loadParticles() {
-		particlesJS("particles-js", {
-			"particles": {
-				"number": {
-					"value": 15,
-					"density": {
-						"enable": true,
-						"value_area": 800
-					}
-				},
-				"color": {
-					"value": "#ffffff"
-				},
-				"shape": {
-					"type": "image",
-					"stroke": {
-						"width": 0,
-						"color": "#000000"
-					},
-					"polygon": {
-						"nb_sides": 5
-					},
-					"images": [
-						{
-							"src": "https://i.pinimg.com/originals/8c/d7/24/8cd724371a6f169b977684fd69cc2339.jpg",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://appstickers-cdn.appadvice.com/1234832159/825976844/65f0edd80bc00993662746df6c4961d4-0.png",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://i.pinimg.com/originals/8c/d7/24/8cd724371a6f169b977684fd69cc2339.jpg",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://appstickers-cdn.appadvice.com/1234832159/825976844/65f0edd80bc00993662746df6c4961d4-0.png",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://i.pinimg.com/originals/8c/d7/24/8cd724371a6f169b977684fd69cc2339.jpg",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://appstickers-cdn.appadvice.com/1234832159/825976844/65f0edd80bc00993662746df6c4961d4-0.png",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-							"width": 100,
-							"height": 100
-						},
-						{
-							"src": "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-							"width": 100,
-							"height": 100
-						}
-					]
-				},
-				"opacity": {
-					"value": 0.5,
-					"random": false,
-					"anim": {
-						"enable": false,
-						"speed": 0.2,
-						"opacity_min": 0.1,
-						"sync": false
-					}
-				},
-				"size": {
-					"value": 15,
-					"random": true,
-					"anim": {
-						"enable": false,
-						"speed": 20,
-						"size_min": 15,
-						"sync": false
-					}
-				},
-				"line_linked": {
-					"enable": true,
-					"distance": 150,
-					"color": "#ffffff",
-					"opacity": 0.4,
-					"width": 1
-				},
-				"move": {
-					"enable": true,
-					"speed": 0.2,
-					"direction": "none",
-					"random": false,
-					"straight": false,
-					"out_mode": "out",
-					"bounce": false,
-					"attract": {
-						"enable": false,
-						"rotateX": 600,
-						"rotateY": 1200
-					}
+	function loadJSON(path, callback) {
+		/* load json config */
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', path);
+		xhr.onreadystatechange = function (data) {
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					if (callback) callback(JSON.parse(data.currentTarget.response));
+				} else {
+					console.log('Error pJS - XMLHttpRequest status: ' + xhr.status);
+					console.log('Error pJS - File config not found');
 				}
-			},
-			"interactivity": {
-				"detect_on": "canvas",
-				"events": {
-					"onhover": {
-						"enable": true,
-						"mode": "bubble",
-					},
-					"onclick": {
-						"enable": false,
-						"mode": "push"
-					},
-					"resize": true
-				},
-				"modes": {
-					"grab": {
-						"distance": 140,
-						"line_linked": {
-							"opacity": 1
-						}
-					},
-					"bubble": {
-						"distance": 200,
-						"size": 30,
-						"duration": 2,
-						"opacity": 8,
-						"speed": 3
-					},
-					"repulse": {
-						"distance": 200,
-						"duration": 0.4
-					},
-					"push": {
-						"particles_nb": 4
-					},
-					"remove": {
-						"particles_nb": 2
-					}
-				}
-			},
-			"retina_detect": true
-		});
+			}
+		};
+		xhr.send();
 	}
 
+	function sound(src) {
+		this.sound = document.createElement("audio");
+		this.sound.src = src;
+		this.sound.setAttribute("preload", "auto");
+		this.sound.setAttribute("controls", "none");
+		this.sound.style.display = "none";
+		document.body.appendChild(this.sound);
+		this.play = function () {
+			this.sound.play();
+		};
+		this.stop = function () {
+			this.sound.pause();
+		};
+	}
 
-	var gameStep = ["start", 'particle', 'countdown', 'thanos', 'particle', "countdown"].values();
+	var background = sound('./assets/the-avengers.mp3');
 
+	var originData = null;
+	var originLength = null;
+	var data = null;
+	var particleOptions = null;
+
+	function loadParticles(options) {
+
+		loadJSON("./assets/members.json", function (member) {
+			var list = Object.keys(member.list);
+			data = list;
+			originLength = list.length;
+			originData = member.list;
+
+			options.particles.shape.images = list.map(k => ({
+				src: `./img/${k}.jpg`,
+				width: 100,
+				height: 125
+			}));
+
+			options.particles.number.value = list.length;
+			particleOptions = options;
+			renderCount(list.length);
+			particlesJS("particles-js", options);
+		})
+	}
+
+	function toggleFinger(isShow) {
+		document.getElementById('game-finger').style.display = isShow ? 'flex' : 'none';
+	}
+
+	function renderCount(count) {
+		document.getElementById('game-count').innerText = count;
+	}
+
+	var gameStep = ["start", 'particle', 'remove', 'remove', 'remove', 'remove', 'remove', 'remove', 'remove'].values();
 	var typed = null;
 
 	const game = function (step) {
@@ -218,17 +93,49 @@ window.onload = function () {
 					var options = {
 						strings: ["THE<br/>THANOS<br/>GAME"],
 						typeSpeed: 100,
-						showCursor : false,
+						showCursor: false,
 					};
 
 					typed = new Typed(".game-title", options);
 					break;
 				case "particle":
-					document.getElementById("game-start").style.display='none';
+					document.getElementById("game-start").style.display = 'none';
 					document.getElementById("particles-js").style.display = 'block';
-					loadParticles();
+					loadJSON("./assets/options.json", loadParticles);
 					break;
-				case "countdown":
+				case "remove":
+					var percent = Math.round(data.length / originLength * 100);
+					var isOver25Percent = percent > 25;
+					renderCount([`${data.length} 명`, percent < 7 ? data.map(k => originData[k].split(', ')[0]).join('/') : ''].join(' '));
+					particlesJS("particles-js", {
+						...particleOptions,
+						particles: {
+							...particleOptions.particles,
+							number: {
+								...particleOptions.particles.number,
+								value: data.length
+							},
+							shape: {
+								...particleOptions.particles.shape,
+								images: data.map(v => ({
+									...v,
+									src: `./img/${v}.jpg`,
+									width: 100,
+									height: 125
+								}))
+							},
+							size: {
+								...particleOptions.particles.size,
+								value: Math.min(Math.max(Math.round(originLength / data.length) * 10, 50), 70),
+								random: isOver25Percent,
+							},
+							move: {
+								...particleOptions.particles.move,
+								enable: !!percent,
+								speed: (100 / percent || 1) * 0.1
+							}
+						}
+					});
 					break;
 			}
 
@@ -240,8 +147,16 @@ window.onload = function () {
 
 	document.getElementById('game-start-btn').onclick = function () {
 		game(gameStep);
-
 	};
 
+	document.getElementById('game-remove').onclick = function () {
+		var filtered = shuffle(data).slice(0, data.length / 2);
+		data = filtered;
+		toggleFinger(true);
+		setTimeout(function () {
+			game(gameStep);
+			toggleFinger(false);
+		}, 1000);
+	}
 
 };

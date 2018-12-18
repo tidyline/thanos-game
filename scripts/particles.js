@@ -382,7 +382,6 @@ var pJS = function (tag_id, params) {
 				src: images ? images.src : sh.image.src,
 				ratio: (images ? images.width : sh.image.width) / (images ? images.height : sh.image.height)
 			};
-			console.log('[particle]', this.img.src);
 			if (!this.img.ratio) this.img.ratio = 1;
 			if (pJS.tmp.img_type === 'svg' && pJS.tmp.source_svg !== undefined) {
 				pJS.fn.vendors.createSvgImg(this);
@@ -456,6 +455,7 @@ var pJS = function (tag_id, params) {
 				break;
 
 			case 'image':
+
 			function draw() {
 				pJS.canvas.ctx.drawImage(
 					img_obj,
@@ -644,10 +644,9 @@ var pJS = function (tag_id, params) {
 
 		/* draw each particle */
 		for (var i = 0; i < pJS.particles.array.length; i++) {
-			var p = pJS.particles.array[i];
-			p.draw(i);
+				var p = pJS.particles.array[i];
+				p.draw(i);
 		}
-
 	};
 
 	pJS.fn.particlesEmpty = function () {
@@ -1149,7 +1148,6 @@ var pJS = function (tag_id, params) {
 								pJS.tmp.repulse_clicking = false;
 							}, pJS.interactivity.modes.repulse.duration * 1000)
 							break;
-
 					}
 
 				}
@@ -1307,7 +1305,7 @@ var pJS = function (tag_id, params) {
 					pJS.fn.vendors.checkBeforeDraw();
 				});
 				img.src = currentSrc;
-				console.log('[loadImage]', currentSrc);
+
 			}
 
 		} else {
