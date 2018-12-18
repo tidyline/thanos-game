@@ -1,5 +1,3 @@
-/* ---- reset ---- */
-
 body {
     margin: 0;
     font-family: "Booster Next FY", "Avenir Next", Avenir, sans-serif;
@@ -9,8 +7,6 @@ canvas {
     display: block;
     vertical-align: bottom;
 }
-
-/* ---- particles.js container ---- */
 
 #particles-js {
     display: none;
@@ -22,8 +18,6 @@ canvas {
     background-size: cover;
     background-position: 50% 50%;
 }
-
-/* ---- stats.js ---- */
 
 .count-particles {
     background: #000022;
@@ -73,9 +67,8 @@ canvas {
 
 #game-start h3 {
     color: white;
-    font-size: 5em;
+    font-size: 4vw;
     margin: 5px;
-    height: 45%;
 }
 
 #game-start .btn {
