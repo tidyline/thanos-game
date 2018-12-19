@@ -141,12 +141,12 @@ window.onload = function () {
 		game(gameStep);
 	};
 
-	document.getElementById('game-remove').onclick = function () {
+	document.body.onkeydown = function () {
 		data = shuffle(data).slice(0, data.length / 2);
 		toggleFinger(true);
 		setTimeout(function () {
 			game(gameStep);
 			toggleFinger(false);
-		}, 1000);
+		}, 950);
 	}
 };
