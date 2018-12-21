@@ -95,10 +95,9 @@ window.onload = function () {
 					case 'remove':
 						var percent = Math.round(data.length / originLength * 100);
 						var isOver25Percent = percent > 25;
-
 						renderCount([
 							`${data.length} 명`,
-							percent < 7 ? data.map(k => originData[k].split(', ')[0]).join('/') : ''
+							percent < 50 ? data.map(k => originData[k]).join('/') : ''
 						].join(' '));
 
 						particlesJS('particles-js', {
@@ -141,12 +140,14 @@ window.onload = function () {
 		game(gameStep);
 	};
 
-	document.body.onkeydown = function () {
-		data = shuffle(data).slice(0, data.length / 2);
-		toggleFinger(true);
-		setTimeout(function () {
-			game(gameStep);
-			toggleFinger(false);
-		}, 950);
+	document.body.onkeydown = function (e) {
+		if (e.code === "Enter") {
+			data = shuffle(data).slice(0, data.length / 2);
+			toggleFinger(true);
+			setTimeout(function () {
+				game(gameStep);
+				toggleFinger(false);
+			}, 950);
+		}
 	}
 };
