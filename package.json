@@ -1,0 +1,24 @@
+{
+  "name": "thanos-game",
+  "version": "1.0.0",
+  "description": "The game blows away the half of the names.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tidyline/thanos-game.git"
+  },
+  "author": "tidyline",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tidyline/thanos-game/issues"
+  },
+  "homepage": "https://github.com/tidyline/thanos-game#readme"
+}
