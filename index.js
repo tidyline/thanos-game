@@ -69,8 +69,8 @@ window.onload = function () {
 
 						options.particles.shape.images = list.map(k => ({
 							src: `./img/${k}`,
-							width: 370,
-							height: 320
+							width: 320,
+							height: 370
 						}));
 						options.particles.number.value = list.length;
 						particleOptions = options;
