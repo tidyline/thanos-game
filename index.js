@@ -6,14 +6,7 @@ window.onload = function () {
 		particleOptions = null,
 		gameStep = [
 			'start',
-			'particle',
-			'remove',
-			'remove',
-			'remove',
-			'remove',
-			'remove',
-			'remove',
-			'remove'
+			'particle'
 		].values(),
 
 		shuffle = function (array) {
@@ -42,23 +35,49 @@ window.onload = function () {
 			xhr.send();
 		},
 
+		getStep = function (length) {
+			var step = [];
+			while (length > 0) {
+				length = Math.floor(length / 2);
+				step.push('remove');
+			}
+			return step;
+		},
+
 		loadParticles = function (options) {
-			loadJSON('./assets/members.json', function (member) {
-				var list = Object.keys(member.list);
-				data = list;
-				originLength = list.length;
-				originData = member.list;
+			loadJSON('./assets/members.json', function (result) {
+				var list = Object.keys(result.list);
+				if (list.length) {
+					list = list.map(v => `${v}.jpg`);
+					originData = data = list;
+					originLength = list.length;
 
-				options.particles.shape.images = list.map(k => ({
-					src: `./img/${k}.jpg`,
-					width: 100,
-					height: 125
-				}));
-				options.particles.number.value = list.length;
-				particleOptions = options;
+					options.particles.shape.images = list.map(k => ({
+						src: `./img/${k}`,
+						width: 100,
+						height: 125
+					}));
+					options.particles.number.value = list.length;
+					particleOptions = options;
 
-				renderCount(list.length);
-				particlesJS('particles-js', options);
+					renderCount(list.length);
+					particlesJS('particles-js', options);
+				} else {
+					loadJSON('/list', function (list) {
+						originData = data = list;
+						originLength = list.length;
+
+						options.particles.shape.images = list.map(k => ({
+							src: `./img/${k}`,
+							width: 370,
+							height: 320
+						}));
+						options.particles.number.value = list.length;
+						particleOptions = options;
+						renderCount(list.length);
+						particlesJS('particles-js', options);
+					})
+				}
 			})
 		},
 
@@ -91,45 +110,6 @@ window.onload = function () {
 						document.getElementById('particles-js').style.display = 'block';
 						loadJSON('./assets/options.json', loadParticles);
 						break;
-
-					case 'remove':
-						var percent = Math.round(data.length / originLength * 100);
-						var isOver25Percent = percent > 25;
-						renderCount([
-							`${data.length} 명`,
-							percent < 50 ? data.map(k => originData[k]).join('/') : ''
-						].join(' '));
-
-						particlesJS('particles-js', {
-							...particleOptions,
-							particles: {
-								...particleOptions.particles,
-								number: {
-									...particleOptions.particles.number,
-									value: data.length
-								},
-								shape: {
-									...particleOptions.particles.shape,
-									images: data.map(v => ({
-										...v,
-										src: `./img/${v}.jpg`,
-										width: 100,
-										height: 125
-									}))
-								},
-								size: {
-									...particleOptions.particles.size,
-									value: Math.min(Math.max(Math.round(originLength / data.length) * 10, 50), 70),
-									random: isOver25Percent,
-								},
-								move: {
-									...particleOptions.particles.move,
-									enable: !!percent,
-									speed: (100 / percent || 1) * 0.1
-								}
-							}
-						});
-						break;
 				}
 			}
 		};
@@ -140,14 +120,58 @@ window.onload = function () {
 		game(gameStep);
 	};
 
+	function play() {
+		debugger;
+		var percent = Math.round(data.length / originLength * 100);
+		var isOver25Percent = percent > 25;
+		renderCount([
+			`${data.length} 명`,
+			// percent < 50 ? data.map(k => originData[k]).join('/') : ''
+		].join(' '));
+
+		particlesJS('particles-js', {
+			...particleOptions,
+			particles: {
+				...particleOptions.particles,
+				number: {
+					...particleOptions.particles.number,
+					value: data.length
+				},
+				shape: {
+					...particleOptions.particles.shape,
+					images: data.map(v => ({
+						...v,
+						src: `./img/${v}`,
+						width: 100,
+						height: 125
+					}))
+				},
+				size: {
+					...particleOptions.particles.size,
+					value: Math.min(Math.max(Math.round(originLength / data.length) * 10, 50), 70),
+					random: isOver25Percent,
+				},
+				move: {
+					...particleOptions.particles.move,
+					enable: !!percent,
+					speed: (100 / percent || 1) * 0.1
+				}
+			}
+		});
+	}
+
 	document.body.onkeydown = function (e) {
-		if (e.code === "Enter") {
-			data = shuffle(data).slice(0, data.length / 2);
-			toggleFinger(true);
-			setTimeout(function () {
-				game(gameStep);
-				toggleFinger(false);
-			}, 950);
+		if (data.length > 1) {
+			if (e.code === "Enter") {
+				data = shuffle(data).slice(0, data.length / 2);
+				toggleFinger(true);
+				setTimeout(function () {
+
+					play();
+					toggleFinger(false);
+
+				}, 950);
+			}
 		}
 	}
 };
