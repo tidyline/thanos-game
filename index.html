@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Thanos GAME</title>
-    <link rel="stylesheet" media="screen" href="./css/style.css"/>
+    <link rel="stylesheet" media="screen" href="./css/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/typed.js"></script>
     <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>-->
-</head>
-<body>
-
-<div id="game-start">
-    <img src="./assets/thanos.gif"/>
-    <h3 class="game-title"></h3>
-    <button class="btn" id="game-start-btn">Game Start</button>
-</div>
-<div id="particles-js">
-    <p class="btn particles-window" id="game-count">0</p>
-    <div class="particles-window" id="game-finger">
-        <img src="./assets/tenor.gif"/>
+  </head>
+  <body>
+    <div id="game-start">
+      <img src="./assets/thanos.gif" />
+      <h3 class="game-title"></h3>
+      <button class="btn" id="game-start-btn">Game Start</button>
     </div>
-</div>
-<div id="game-finish">
-    <h3 id="game-finish-title"></h3>
-</div>
-<iframe src="./assets/the-avengers.mp3" id="audio" style="display:none"></iframe>
-<audio preload="auto" autoplay controls loop style="display: none">
-    <source src="./assets/the-avengers.mp3" type="audio/mpeg" />
-</audio>
-<script type="text/javascript" src="./scripts/particles.js"></script>
-<script type="text/javascript" src="./index.js"></script>
-</body>
+    <div id="particles-js">
+      <p class="btn particles-window" id="game-count">0</p>
+      <div class="particles-window" id="game-finger">
+        <img src="./assets/tenor.gif" />
+      </div>
+    </div>
+    <div id="game-finish">
+      <h3 id="game-finish-title"></h3>
+    </div>
+    <audio
+      preload="auto"
+      autoplay
+      controls
+      loop
+      style="display: none"
+      id="audio"
+    >
+      <source src="./assets/the-avengers.mp3" type="audio/mpeg" />
+    </audio>
+    <script type="text/javascript" src="./scripts/particles.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+  </body>
 </html>
